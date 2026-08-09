@@ -1,0 +1,68 @@
+table Gold_Category_Sales
+	lineageTag: 306f0009-09e2-4b87-ba75-dc91a2c65254
+
+	column Category
+		dataType: string
+		lineageTag: affadfdb-1be5-4a23-9387-4a18533f51a6
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 0caad4e3-26bb-4f2e-9168-e0233a68f177
+		summarizeBy: none
+		sourceColumn: TotalQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrossSales
+		dataType: double
+		lineageTag: b440336b-29a8-4c9f-9d1d-09f9eef0983d
+		summarizeBy: none
+		sourceColumn: GrossSales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotalDiscount
+		dataType: double
+		lineageTag: 4aa53b85-4817-4927-b8cd-7fb456d4799b
+		summarizeBy: none
+		sourceColumn: TotalDiscount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NetSales
+		dataType: double
+		lineageTag: e818bc17-a021-4918-83a0-c42113c295c2
+		summarizeBy: none
+		sourceColumn: NetSales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NumberOfOrders
+		dataType: int64
+		formatString: 0
+		lineageTag: 0501c8fe-2d26-4592-88e5-8ea1fbdb9534
+		summarizeBy: none
+		sourceColumn: NumberOfOrders
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Gold_Category_Sales = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("52h5safyh2de5m66duogqeoenm-bktju5on6ijuxlziuvwej3kili.datawarehouse.fabric.microsoft.com", "Supermarket_Raw_Data"),
+				    dbo_Gold_Category_Sales = Source{[Schema="dbo",Item="Gold_Category_Sales"]}[Data]
+				in
+				    dbo_Gold_Category_Sales
+
