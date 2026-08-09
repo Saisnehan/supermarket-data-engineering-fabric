@@ -1,0 +1,20 @@
+model Model
+	culture: en-IN
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Gold_Category_Sales","Gold_Sales"]
+
+ref table Gold_Category_Sales
+ref table Gold_Sales
+ref table DateTableTemplate_9c65cd9e-1f16-4a9b-83dc-5b2e88c60a96
+ref table LocalDateTable_5ef27b6b-1481-429c-bf32-58ac671d5827
+
+ref cultureInfo en-IN
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "PowerBi_Supermarket_Gold"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "84874e8d-f1ad-b3b6-4e73-25aae25a3c62"
+  }
+}

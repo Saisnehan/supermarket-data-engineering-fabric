@@ -1,0 +1,73 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowModernEvaluationEngine": true
+  },
+  "name": "DF_LH_TO_WH",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "Customers csv": {
+      "queryId": "e977c190-2d86-4921-ab20-2fca22069e48",
+      "queryName": "Customers csv"
+    },
+    "OrderDetails csv": {
+      "queryId": "9d7f9a34-71a4-4bde-b6a4-873f16ef575d",
+      "queryName": "OrderDetails csv"
+    },
+    "Orders csv": {
+      "queryId": "622fa5ff-a442-4de5-92c9-cd64a1db1243",
+      "queryName": "Orders csv"
+    },
+    "Products csv": {
+      "queryId": "403a5ac2-9335-40a5-beea-b80498f81cb4",
+      "queryName": "Products csv"
+    },
+    "Stores csv": {
+      "queryId": "ea6db692-6764-4f1a-9a13-9eb0de4e1bdc",
+      "queryName": "Stores csv"
+    },
+    "Customers csv_DataDestination": {
+      "queryId": "f8d2092b-9b46-48a1-a779-2050d697647c",
+      "queryName": "Customers csv_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "OrderDetails csv_DataDestination": {
+      "queryId": "9d65adee-4f4c-4f36-af4f-07a725771775",
+      "queryName": "OrderDetails csv_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Products csv_DataDestination": {
+      "queryId": "105af196-519a-4ad0-b66a-000c3e9d5c97",
+      "queryName": "Products csv_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Stores csv_DataDestination": {
+      "queryId": "4295c357-4cf7-4807-98a3-758e66e8bcf2",
+      "queryName": "Stores csv_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Orders csv_DataDestination": {
+      "queryId": "623b6eca-203d-4955-bfc6-589ce0fb814a",
+      "queryName": "Orders csv_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"5d8ef5f2-c693-4479-9686-a3b88fa5a161\",\"DatasourceId\":\"ae4ffa97-d364-4816-a0e0-1300c40087fe\"}"
+    },
+    {
+      "path": "Warehouse",
+      "kind": "Warehouse",
+      "connectionId": "{\"ClusterId\":\"5d8ef5f2-c693-4479-9686-a3b88fa5a161\",\"DatasourceId\":\"5ac213b3-fee7-4777-8161-8c0476d3748a\"}"
+    }
+  ]
+}

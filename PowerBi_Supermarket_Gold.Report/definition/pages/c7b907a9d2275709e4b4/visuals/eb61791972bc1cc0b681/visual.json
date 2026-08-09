@@ -1,0 +1,220 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "eb61791972bc1cc0b681",
+  "position": {
+    "x": 110,
+    "y": 21.666666666666668,
+    "z": 1,
+    "height": 698.33333333333337,
+    "width": 1088.3333333333335,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gold_Category_Sales"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "Gold_Category_Sales.Category",
+              "nativeQueryRef": "Category",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gold_Category_Sales"
+                    }
+                  },
+                  "Property": "GrossSales"
+                }
+              },
+              "queryRef": "Gold_Category_Sales.GrossSales",
+              "nativeQueryRef": "GrossSales",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gold_Category_Sales"
+                    }
+                  },
+                  "Property": "NumberOfOrders"
+                }
+              },
+              "queryRef": "Gold_Category_Sales.NumberOfOrders",
+              "nativeQueryRef": "NumberOfOrders",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gold_Category_Sales"
+                    }
+                  },
+                  "Property": "TotalDiscount"
+                }
+              },
+              "queryRef": "Gold_Category_Sales.TotalDiscount",
+              "nativeQueryRef": "TotalDiscount",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gold_Category_Sales"
+                    }
+                  },
+                  "Property": "TotalQuantity"
+                }
+              },
+              "queryRef": "Gold_Category_Sales.TotalQuantity",
+              "nativeQueryRef": "TotalQuantity",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gold_Sales"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "Gold_Sales.Category",
+              "nativeQueryRef": "Category1",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gold_Sales"
+                    }
+                  },
+                  "Property": "CustomerName"
+                }
+              },
+              "queryRef": "Gold_Sales.CustomerName",
+              "nativeQueryRef": "CustomerName",
+              "active": false
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gold_Category_Sales"
+                    }
+                  },
+                  "Property": "NetSales"
+                }
+              },
+              "queryRef": "Gold_Category_Sales.NetSales",
+              "nativeQueryRef": "NetSales"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Gold_Sales"
+                        }
+                      },
+                      "Property": "CustomerID"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "CountNonNull(Gold_Sales.CustomerID)",
+              "nativeQueryRef": "Count of CustomerID"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gold_Sales"
+                    }
+                  },
+                  "Property": "Discount Rate"
+                }
+              },
+              "queryRef": "Gold_Sales.Discount Rate",
+              "nativeQueryRef": "Discount Rate"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gold_Sales"
+                    }
+                  },
+                  "Property": "Average Order Value"
+                }
+              },
+              "queryRef": "Gold_Sales.Average Order Value",
+              "nativeQueryRef": "Average Order Value"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Gold_Sales"
+                  }
+                },
+                "Property": "Average Order Value"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

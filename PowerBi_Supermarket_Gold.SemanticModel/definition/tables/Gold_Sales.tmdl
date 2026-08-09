@@ -1,0 +1,223 @@
+table Gold_Sales
+	lineageTag: 4de25c82-c2bf-4dfd-8441-1b76332be9c2
+
+	measure 'Total Orders' =
+			
+			DISTINCTCOUNT(Gold_Sales[OrderID])
+		lineageTag: 376c0f6a-afd5-4483-bb91-15cd9b0f4d93
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Discount Rate' =
+			
+			DIVIDE(
+			    SUM(Gold_Sales[DiscountAmount]),
+			    SUM(Gold_Sales[GrossAmount]),
+			    0
+			)
+		lineageTag: e3906966-0cf4-4180-a56d-0c179fe4e50c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Order Value' =
+			
+			DIVIDE(
+			    SUM(Gold_Sales[NetAmount]),
+			    DISTINCTCOUNT(Gold_Sales[OrderID]),
+			    0
+			)
+		lineageTag: 18b90f00-538e-49f2-aadb-bdb2e29abe4c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Discount' =
+			
+			SUM(Gold_Sales[DiscountAmount])
+		lineageTag: a896f60b-3dff-48d7-b425-9b2e5c48b6c3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Sales' =
+			
+			SUM(Gold_Sales[NetAmount])
+		lineageTag: 674f7d02-08f1-4516-9f35-933d42a0aaf2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OrderDetailID
+		dataType: int64
+		formatString: 0
+		lineageTag: 0188bbc4-4a7e-4493-98d7-25dae41a201e
+		summarizeBy: count
+		sourceColumn: OrderDetailID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: 50e63c7f-b284-4ac3-b9c3-9f8a73e02259
+		summarizeBy: count
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ffb52195-4253-4891-9b3d-493c2dfe663d
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		variation Variation
+			isDefault
+			relationship: 0d2009e1-fb86-4d7e-ad51-93916e4b279d
+			defaultHierarchy: LocalDateTable_5ef27b6b-1481-429c-bf32-58ac671d5827.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ba0c858-5365-4c57-b196-00ddfc0b8f6e
+		summarizeBy: count
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: 871207e8-de8c-4ef7-8e8a-e561a3b4fe65
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreID
+		dataType: int64
+		formatString: 0
+		lineageTag: 641da06b-1f2a-40c7-8cb7-d43bc50ea440
+		summarizeBy: count
+		sourceColumn: StoreID
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreName
+		dataType: string
+		lineageTag: eade10f9-736e-4db6-b733-d3ebc65950ef
+		summarizeBy: none
+		sourceColumn: StoreName
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreCity
+		dataType: string
+		lineageTag: 2ea92d7a-5f14-4480-9002-c09f4fd19582
+		summarizeBy: none
+		sourceColumn: StoreCity
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: d1601079-c585-4f7e-8071-6a7d9c267e1c
+		summarizeBy: count
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: 81b326e3-a73d-44f7-a105-d7f0f0dbe08d
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 61015ac7-e3f1-4b88-ab6b-8d42ee3f7aee
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: ee2fe3ad-4397-417a-80ba-148d02ce644a
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price
+		dataType: double
+		lineageTag: 5245008a-fc0f-427e-b141-9182ab524a98
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Discount
+		dataType: double
+		lineageTag: 5d7caea8-f5f0-4aba-b9ed-f884392466c8
+		summarizeBy: sum
+		sourceColumn: Discount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PaymentMethod
+		dataType: string
+		lineageTag: 6298e20b-e0b5-4d1a-8a94-7c513e6009b9
+		summarizeBy: none
+		sourceColumn: PaymentMethod
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrossAmount
+		dataType: double
+		lineageTag: 18ede05e-5347-402d-95b9-be6a159fe445
+		summarizeBy: sum
+		sourceColumn: GrossAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DiscountAmount
+		dataType: double
+		lineageTag: a955464b-4b51-4686-a140-eb9375729de9
+		summarizeBy: sum
+		sourceColumn: DiscountAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NetAmount
+		dataType: double
+		lineageTag: 5326f0ab-7a5d-4984-a331-ec10ece15709
+		summarizeBy: sum
+		sourceColumn: NetAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Gold_Sales = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("52h5safyh2de5m66duogqeoenm-bktju5on6ijuxlziuvwej3kili.datawarehouse.fabric.microsoft.com", "Supermarket_Raw_Data"),
+				    dbo_Gold_Sales = Source{[Schema="dbo",Item="Gold_Sales"]}[Data]
+				in
+				    dbo_Gold_Sales
+

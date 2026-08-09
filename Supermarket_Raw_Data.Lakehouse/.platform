@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "Supermarket_Raw_Data"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "0a159cac-9c14-90bf-4589-d0a3820fef14"
+  }
+}

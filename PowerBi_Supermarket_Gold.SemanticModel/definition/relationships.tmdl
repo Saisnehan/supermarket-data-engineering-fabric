@@ -1,0 +1,9 @@
+relationship 0d2009e1-fb86-4d7e-ad51-93916e4b279d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Gold_Sales.OrderDate
+	toColumn: LocalDateTable_5ef27b6b-1481-429c-bf32-58ac671d5827.Date
+
+relationship AutoDetected_de8a4b04-6a1e-484d-9df4-b2847cd7b0e4
+	fromColumn: Gold_Sales.Category
+	toColumn: Gold_Category_Sales.Category
+

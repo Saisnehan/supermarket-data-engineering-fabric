@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "PowerBi_Supermarket_Gold"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7cd05862-4887-b10f-4138-0c71d183913d"
+  }
+}
