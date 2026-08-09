@@ -87,7 +87,9 @@ The solution follows a modern **Medallion Architecture** to improve data quality
                                   │ • Store Analysis   │
                                   └────────────────────┘
 
-🎯 Business Problem
+
+
+##🎯 Business Problem
 
 Supermarket businesses generate large amounts of transactional data from customers, stores, products, and orders.
 
@@ -112,7 +114,7 @@ How are sales changing over time?
 What is the average order value?
 How much discount is being given?
 Which products have the highest sales volume?
-🗂️ Source Data
+##🗂️ Source Data
 
 The project uses five major source datasets:
 
@@ -128,7 +130,7 @@ SQL Server
 
 The source data is initially stored in an on-premises SQL Server environment and ingested into Microsoft Fabric.
 
-🥉 Bronze Layer
+##🥉 Bronze Layer
 
 The Bronze layer stores the raw source data with minimal transformation.
 
@@ -148,7 +150,7 @@ Bronze_Supermarket_data/
 
 The purpose of this layer is to maintain a reliable copy of the source data before transformation.
 
-🥈 Silver Layer
+##🥈 Silver Layer
 
 The Silver layer contains cleaned and validated data.
 
@@ -212,7 +214,7 @@ df_orders = df_orders.join(
 
 This ensures that transactional records reference valid customers.
 
-🥈 Silver Data Storage
+##🥈 Silver Data Storage
 
 Cleaned data is stored in the Lakehouse as Parquet files.
 
@@ -226,7 +228,7 @@ Silver_ETL_performed/
 
 Parquet provides a columnar storage format suitable for analytical workloads.
 
-🥇 Gold Layer
+##🥇 Gold Layer
 
 The Gold layer contains business-ready datasets designed for analytics and reporting.
 
@@ -277,7 +279,7 @@ NumberOfOrders
 
 This table supports category performance analysis.
 
-🏢 Data Warehouse
+##🏢 Data Warehouse
 
 The cleaned/processed data is also integrated with a Microsoft Fabric Data Warehouse.
 
@@ -292,7 +294,7 @@ Stores
 
 The Warehouse acts as the structured analytical layer for relational querying.
 
-📊 Power BI Analytics
+##📊 Power BI Analytics
 
 The Gold layer is connected to a Power BI semantic model.
 
@@ -302,37 +304,38 @@ Executive Overview
 
 The dashboard contains KPIs including:
 
-💰 Total Sales
+##💰 Total Sales
 
 Measures total revenue generated.
 
-📦 Total Quantity
+##📦 Total Quantity
 
 Shows the total number of products sold.
 
-🏷️ Total Discount
+##🏷️ Total Discount
 
 Measures the total discount amount provided.
 
-🧾 Total Orders
+##🧾 Total Orders
 
 Shows the number of orders processed.
 
-💵 Average Order Value
+##💵 Average Order Value
 Average Order Value =
 DIVIDE(
     [Total Sales],
     [Total Orders],
     0
 )
-📉 Discount Rate
+##📉 Discount Rate
 Discount Rate =
 DIVIDE(
     [Total Discount],
     [Gross Sales],
     0
 )
-📈 Dashboard Visualizations
+
+##📈 Dashboard Visualizations
 
 The Power BI report includes business-focused visualizations such as:
 
@@ -361,7 +364,8 @@ Total Quantity
 Total Discount
 Total Orders
 Average Order Value
-🔄 End-to-End Data Flow
+
+##🔄 End-to-End Data Flow
 SQL Server
     │
     ▼
@@ -400,7 +404,8 @@ Warehouse       Power BI
     └───────────────┤
                     ▼
              Business Dashboard
-🛠️ Technologies Used
+
+##🛠️ Technologies Used
 Technology	Purpose
 Microsoft Fabric	End-to-end data platform
 OneLake	Unified data storage
@@ -414,7 +419,8 @@ Power BI	Visualization and reporting
 DAX	Analytical measures
 GitHub	Version control
 Git Integration	Fabric project source control
-🔐 Data Quality & Governance
+
+##🔐 Data Quality & Governance
 
 The pipeline implements basic data quality practices:
 
@@ -426,7 +432,8 @@ Whitespace normalization
 Invalid record removal
 Layered data architecture
 Version control using Git
-📁 Project Structure
+
+##📁 Project Structure
 supermarket-data-engineering-fabric/
 │
 ├── DF_LH_TO_WH.Dataflow/
@@ -452,7 +459,8 @@ supermarket-data-engineering-fabric/
 ├── StagingWarehouseForDataflows/
 │
 └── README.md
-🚀 Key Learning Outcomes
+
+##🚀 Key Learning Outcomes
 
 This project demonstrates practical experience with:
 
@@ -471,7 +479,8 @@ DAX measures
 Business intelligence reporting
 Git-based version control
 Microsoft Fabric Git integration
-💡 Business Value
+
+##💡 Business Value
 
 The solution converts raw supermarket transactions into reliable analytical datasets that can support:
 
@@ -483,7 +492,8 @@ Discount analysis
 Revenue trend analysis
 Executive reporting
 Data-driven business decisions
-📌 Future Improvements
+
+##📌 Future Improvements
 
 Possible future enhancements include:
 
@@ -500,7 +510,8 @@ Row-level security in Power BI
 CI/CD using Fabric Deployment Pipelines
 Automated testing
 Metadata-driven pipelines
-👨‍💻 Author
+
+##👨‍💻 Author
 
 K Sai Snehan
 
@@ -510,11 +521,11 @@ Technologies & Interests
 
 Python • SQL • PySpark • Microsoft Fabric • Data Engineering • Power BI • Azure • ETL
 
-⭐ Project Highlights
+##⭐ Project Highlights
 
 Built an end-to-end Microsoft Fabric data engineering platform that ingests raw SQL Server data, processes it through Bronze → Silver → Gold layers, loads analytical data into a Fabric Warehouse, and delivers business insights through Power BI.
 
-📜 License
+##📜 License
 
 This project is intended for educational and portfolio purposes.
 
@@ -532,3 +543,4 @@ Also, because your GitHub repository now contains the actual Fabric artifacts, t
 **Source → Ingestion → Bronze → ETL → Silver → Gold → Warehouse → Semantic Model → Power BI → GitHub**
 
 That's exactly the story you want to communicate for a **Data Engineering portfolio project**.
+
