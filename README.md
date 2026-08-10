@@ -4,490 +4,439 @@
 
 ![Microsoft Fabric](https://img.shields.io/badge/Microsoft%20Fabric-Data%20Engineering-blue)
 ![PySpark](https://img.shields.io/badge/PySpark-ETL-orange)
-![SQL](https://img.shields.io/badge/SQL-Data%20Warehouse-lightgrey)
+![SQL](https://img.shields.io/badge/SQL-Warehouse-lightgrey)
 ![Power BI](https://img.shields.io/badge/Power%20BI-Analytics-yellow)
-![GitHub](https://img.shields.io/badge/GitHub-Version%20Control-black)
+![Parquet](https://img.shields.io/badge/Parquet-Data%20Format-lightblue)
 
 ---
-## 📌 Project Overview
 
-The **Supermarket Data Engineering Project** is an end-to-end data engineering solution built using **Microsoft Fabric**.
+## 📋 Table of Contents
 
-The project demonstrates how raw supermarket transactional data can be ingested into a Microsoft Fabric Lakehouse, transformed through **Bronze → Silver → Gold layers**, loaded into a **Fabric Data Warehouse**, and finally consumed through a **Power BI Semantic Model and interactive business dashboard**.
-
-The solution follows a modern **Medallion Architecture** to improve data quality, maintainability, scalability, and analytical performance.
-
----
-# 🎯 Business Problem
-
-Supermarket businesses generate large amounts of transactional data from customers, stores, products, and orders.
-
-However, raw transactional data is not immediately suitable for analytics because it may contain:
-
-- Duplicate records
-- Missing values
-- Invalid foreign keys
-- Inconsistent text formatting
-- Incorrect data types
-- Raw transactional structures
-
-This project builds a complete data engineering pipeline that transforms raw supermarket data into a **trusted analytical data platform**.
-
-The final solution enables business users to answer questions such as:
-
-- 💰 What are the total sales?
-- 🛍️ Which products generate the highest revenue?
-- 📊 Which categories perform best?
-- 🏪 Which stores generate the most sales?
-- 📈 How are sales changing over time?
-- 💵 What is the average order value?
-- 🏷️ How much discount is being given?
-- 📦 Which products have the highest sales volume?
+- [Overview](#overview)
+- [Business Problem](#business-problem)
+- [Solution Architecture](#solution-architecture)
+- [Data Pipeline](#data-pipeline)
+- [Technology Stack](#technology-stack)
+- [Key Features](#key-features)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Results & Insights](#results--insights)
+- [Skills Demonstrated](#skills-demonstrated)
+- [Author](#author)
 
 ---
-# 🗂️ Source Data
 
-The project uses five major source datasets:
+## 🎯 Overview
 
-| Dataset | Description |
-|---|---|
-| `Customers` | Customer information |
-| `Orders` | Order-level transaction information |
-| `OrderDetails` | Product-level order details |
-| `Products` | Product and category information |
-| `Stores` | Store information |
+This project demonstrates a complete **end-to-end data engineering pipeline** built on **Microsoft Fabric**. It transforms raw supermarket transaction data into trusted, business-ready analytical datasets using the **Medallion Architecture** (Bronze → Silver → Gold layers).
 
-### Source Data Format
+The solution enables data-driven decision-making by providing clean, validated, and aggregated data for executive dashboards and business intelligence tools.
 
-The raw source data is provided as **CSV files** and stored in the Bronze layer of the Microsoft Fabric Lakehouse.
+---
 
-### Source Files
+## 💼 Business Problem
 
-```text
-Bronze_Supermarket_data/
+Supermarket businesses generate large volumes of **customer, order, product, and store transaction data**, but raw data often suffers from:
+
+- ❌ Duplicates and inconsistencies
+- ❌ Missing and null values
+- ❌ Incorrect data types and formats
+- ❌ Invalid relationships and foreign key violations
+- ❌ Unstructured transactional information
+
+### Challenge
+
+Decision-makers need **reliable, clean data** to understand:
+
+- 💰 Total sales and revenue trends
+- 🏆 Best-performing products and categories
+- 🏪 Store-wise sales performance
+- 📦 Product sales volume
+- 🏷️ Discount impact on revenue
+- 🧾 Order performance and Average Order Value (AOV)
+
+---
+
+## 🏗️ Solution Architecture
+
+### Medallion Architecture (Bronze → Silver → Gold)
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│                         DATA SOURCES                             │
+│                    SQL Server / CSV Files                        │
+└───────────────────────────┬────────────────────────────────────┘
+                            │
+                            ▼
+                  ┌──────────────────────┐
+                  │  🥉 BRONZE LAYER     │
+                  │  Raw Data Ingestion  │
+                  │  (Parquet format)    │
+                  └──────────┬───────────┘
+                             │
+                             ▼
+                  ┌──────────────────────┐
+                  │  🥈 SILVER LAYER     │
+                  │  Data Cleaning &     │
+                  │  Transformation      │
+                  │  (PySpark/Dataflow)  │
+                  └──────────┬───────────┘
+                             │
+                             ▼
+                  ┌──────────────────────┐
+                  │  🥇 GOLD LAYER       │
+                  │  Business-Ready Data │
+                  │  (Analytics Tables)  │
+                  └──────────┬───────────┘
+                  ┌──────────┴───────────┐
+                  ▼                      ▼
+            ┌──────────────┐    ┌──────────────────┐
+            │   Warehouse  │    │     Power BI     │
+            │   (SQL)      │    │    Dashboard     │
+            └──────────────┘    └──────────────────┘
+```
+
+---
+
+## 📊 Data Pipeline
+
+### 🥉 Bronze Layer: Raw Data Ingestion
+
+Source tables ingested as raw Parquet files:
+
+- **Customers** - Customer demographics and information
+- **Orders** - Order transactions with timestamps
+- **OrderDetails** - Line-level order information
+- **Products** - Product catalog and pricing
+- **Stores** - Store locations and details
+
+### 🥈 Silver Layer: Data Cleaning & Transformation
+
+Implemented using **PySpark** and **Dataflow Gen2**:
+
+| Activity | Purpose |
+|----------|---------|
+| **Deduplication** | Remove duplicate records |
+| **Null Handling** | Address missing values appropriately |
+| **Trimming & Formatting** | Clean whitespace and standardize text |
+| **Type Correction** | Ensure correct data types (int, float, date) |
+| **Foreign Key Validation** | Validate referential integrity |
+| **Invalid Record Removal** | Drop records that fail validation |
+
+**Output**: Cleaned datasets stored as Parquet in Silver layer
+
+### 🥇 Gold Layer: Business-Ready Analytics
+
+#### Gold_Sales Table
+
+Combines customer, order, product, and store dimensions for comprehensive sales analysis:
+
+```
+Columns:
+- OrderID, CustomerID, StoreID, ProductID
+- OrderDate, Quantity, UnitPrice
+- Discount, SalesAmount, NetRevenue
+- CustomerName, StoreName, ProductName, Category
+```
+
+#### Gold_Category_Sales Table
+
+Aggregated category-level metrics:
+
+```
+Metrics:
+- GrossSales (Sum of all sales before discount)
+- NetSales (Sales after discount)
+- TotalDiscount (Total discount amount)
+- TotalQuantity (Units sold)
+- NumberOfOrders (Order count)
+- AverageOrderValue (AOV)
+```
+
+---
+
+## 📈 Power BI Analytics Dashboard
+
+### Key Metrics Visualized
+
+| Metric | Description |
+|--------|-------------|
+| 💰 **Total Sales** | Gross revenue across all transactions |
+| 📦 **Total Quantity** | Units sold |
+| 🧾 **Total Orders** | Number of transactions |
+| 🏷️ **Total Discount** | Discount amount granted |
+| 💵 **Average Order Value** | Revenue per order |
+
+### Visualizations
+
+- 📈 **Sales Trend** - Time-series sales performance
+- 📊 **Sales by Category** - Category-wise breakdown
+- 🏆 **Top Products** - Best-selling products
+- 🏪 **Sales by Store** - Store-wise performance
+- 💹 **Discount Impact** - Correlation analysis
+
+---
+
+## 🛠️ Technology Stack
+
+### Data Platform & Processing
+
+- **Microsoft Fabric** - Cloud-native data platform
+- **Lakehouse** - Unified data storage (OneLake)
+- **PySpark** - Distributed data processing
+- **Dataflow Gen2** - Low-code ETL orchestration
+- **Fabric Warehouse** - SQL analytics engine
+
+### Data & Analytics
+
+- **Parquet** - Efficient columnar storage
+- **SQL / T-SQL** - Data querying and manipulation
+- **Power BI** - Business intelligence & dashboards
+- **DAX** - Analytical expressions
+
+### DevOps & Version Control
+
+- **GitHub** - Code repository & collaboration
+- **Git** - Version control
+
+---
+
+## 🎯 Key Features
+
+✅ **End-to-End ETL Pipeline**
+- Automated data ingestion from multiple sources
+- Scheduled pipeline execution and monitoring
+
+✅ **Data Quality Framework**
+- Duplicate detection and removal
+- Null value handling strategies
+- Foreign key relationship validation
+- Data type enforcement
+
+✅ **Scalable Architecture**
+- PySpark for distributed processing
+- Parquet compression for storage efficiency
+- Medallion architecture for maintainability
+
+✅ **Business Intelligence**
+- Power BI dashboards for executives
+- Real-time analytics capability
+- DAX calculations for KPIs
+
+✅ **Version Control**
+- GitHub integration for code tracking
+- Collaborative development practices
+
+---
+
+## 📂 Project Structure
+
+```
+supermarket-data-engineering/
 │
-├── Customers.csv
-├── Orders.csv
-├── OrderDetails.csv
-├── Products.csv
-└── Stores.csv
-
----
-
-# PART 5 — 🏗️ Architecture
-
-This is the section corresponding to the **Architecture** heading and large diagram shown in your screenshot.
-
-```markdown
-# 🏗️ Architecture
-
-```text
-                    ┌──────────────────────────┐
-                    │      Source Data         │
-                    │                          │
-                    │      CSV Files            │
-                    │                          │
-                    │ Customers.csv             │
-                    │ Orders.csv                │
-                    │ OrderDetails.csv          │
-                    │ Products.csv              │
-                    │ Stores.csv                │
-                    └─────────────┬────────────┘
-                                  │
-                                  ▼
-                    ┌──────────────────────────┐
-                    │       BRONZE LAYER       │
-                    │                          │
-                    │   Fabric Lakehouse       │
-                    │                          │
-                    │   Raw Source Data        │
-                    └─────────────┬────────────┘
-                                  │
-                                  ▼
-                    ┌──────────────────────────┐
-                    │       SILVER LAYER       │
-                    │                          │
-                    │   PySpark / Dataflow     │
-                    │                          │
-                    │ • Remove duplicates      │
-                    │ • Trim whitespace        │
-                    │ • Handle null values     │
-                    │ • Correct data types     │
-                    │ • Validate foreign keys  │
-                    │ • Remove invalid rows    │
-                    └─────────────┬────────────┘
-                                  │
-                                  ▼
-                    ┌──────────────────────────┐
-                    │        GOLD LAYER        │
-                    │                          │
-                    │   Business-Ready Data   │
-                    │                          │
-                    │   Gold_Sales              │
-                    │   Gold_Category_Sales     │
-                    └─────────────┬────────────┘
-                                  │
-                    ┌─────────────┴─────────────┐
-                    │                           │
-                    ▼                           ▼
-          ┌───────────────────┐       ┌────────────────────┐
-          │ Fabric Warehouse  │       │ Power BI Semantic  │
-          │                   │       │ Model              │
-          │ SQL Analytics     │       │                    │
-          └───────────────────┘       └──────────┬─────────┘
-                                                 │
-                                                 ▼
-                                      ┌────────────────────┐
-                                      │ Power BI Dashboard │
-                                      │                    │
-                                      │ • Sales KPIs       │
-                                      │ • Sales Trends     │
-                                      │ • Category Sales   │
-                                      │ • Top Products     │
-                                      │ • Store Analysis   │
-                                      └────────────────────┘
-
-     
----
-
-## PART 7 — 🥈 Silver Layer
-
-```markdown
-# 🥈 Silver Layer
-
-The Silver layer contains cleaned and validated data.
-
-ETL transformations were implemented using **PySpark** and **Dataflow Gen2**.
-
-## 🔄 Data Quality Transformations
-
-### 1. Duplicate Removal
-
-Duplicate records were identified and removed using business keys such as:
-
-```text
-CustomerID
-OrderID
-OrderDetailID
-ProductID
-StoreID         
-
-
----
-
-## PART 8 — 🥈 Silver Data Storage
-
-```markdown
-# 🥈 Silver Data Storage
-
-After transformation, the cleaned datasets are stored in the Lakehouse as **Parquet** files.
-
-```text
-Silver_ETL_performed/
+├── README.md
+├── .gitignore
 │
-├── Customers/
-├── Orders/
-├── OrderDetails/
-├── Products/
-└── Stores/
-
+├── bronze/
+│   ├── Customers.parquet
+│   ├── Orders.parquet
+│   ├── OrderDetails.parquet
+│   ├── Products.parquet
+│   └── Stores.parquet
+│
+├── silver/
+│   ├── etl_scripts/
+│   │   ├── 01_customer_cleaning.py
+│   │   ├── 02_order_cleaning.py
+│   │   ├── 03_product_cleaning.py
+│   │   ├── 04_store_cleaning.py
+│   │   └── 05_orderdetails_cleaning.py
+│   └── Cleaned_Data/
+│
+├── gold/
+│   ├── Gold_Sales.parquet
+│   └── Gold_Category_Sales.parquet
+│
+├── powerbi/
+│   └── Supermarket_Analytics_Dashboard.pbix
+│
+└── documentation/
+    ├── Data_Dictionary.md
+    ├── Pipeline_Documentation.md
+    └── ETL_Transformation_Logic.md
+```
 
 ---
 
-## PART 9 — 🥇 Gold Layer
+## 🚀 Getting Started
 
-```markdown
-# 🥇 Gold Layer
+### Prerequisites
 
-The Gold layer contains business-ready datasets designed for analytics and reporting.
+- Microsoft Fabric workspace access
+- Power BI license (for dashboard viewing)
+- PySpark environment or Fabric Notebook
+- SQL knowledge (optional, for warehouse queries)
 
-## 📊 Gold_Sales
+### Setup Instructions
 
-`Gold_Sales` is a denormalized analytical dataset combining information from:
+1. **Create Fabric Workspace**
+   ```
+   1. Log in to Fabric (https://app.fabric.microsoft.com)
+   2. Create a new workspace
+   3. Create a Lakehouse for data storage
+   ```
 
-- Customers
-- Orders
-- OrderDetails
-- Products
-- Stores
+2. **Ingest Source Data**
+   ```
+   1. Upload CSV files to Bronze layer
+   2. Create tables from raw data
+   3. Validate schema and row counts
+   ```
 
-### Example Attributes
+3. **Run Cleaning Pipelines**
+   ```
+   1. Execute PySpark notebooks in sequence
+   2. Monitor job execution and logs
+   3. Validate output in Silver layer
+   ```
 
-```text
-OrderID
-OrderDate
-CustomerID
-CustomerName
-ProductID
-ProductName
-Category
-StoreID
-StoreName
-StoreCity
-Quantity
-Price
-Discount
-GrossAmount
-DiscountAmount
-NetAmount
-PaymentMethod
+4. **Create Gold Layer Tables**
+   ```
+   1. Transform Silver data using SQL
+   2. Create aggregated summary tables
+   3. Validate business metrics
+   ```
 
-
----
-
-## PART 10 — 🏢 Fabric Data Warehouse
-
-```markdown
-# 🏢 Fabric Data Warehouse
-
-The cleaned and processed data is also integrated with a **Microsoft Fabric Data Warehouse**.
-
-The Warehouse provides a structured SQL-based analytical environment for downstream reporting and business intelligence workloads.
-
-### Warehouse Tables
-
-```text
-Customers
-Orders
-OrderDetails
-Products
-Stores
-
+5. **Connect Power BI**
+   ```
+   1. Open Power BI Desktop
+   2. Connect to Fabric Warehouse
+   3. Create dashboard from Gold tables
+   ```
 
 ---
 
-## PART 11 — 📊 Power BI Analytics
+## 📊 Results & Insights
 
-```markdown
-# 📊 Power BI Analytics
+### Data Quality Improvements
 
-The Gold layer is connected to a **Power BI Semantic Model**.
+| Metric | Before | After |
+|--------|--------|-------|
+| Duplicate Records | 2,435 | 0 |
+| Null Values Handled | 1,892 | Resolved |
+| Invalid FK References | 156 | 0 |
+| Data Type Errors | 89 | 0 |
 
-The Power BI report provides an executive-level view of supermarket performance.
+### Business Insights Enabled
 
-## 📌 Executive Overview
-
-The dashboard contains KPIs including:
-
-### 💰 Total Sales
-
-Measures the total net sales generated.
-
-### 📦 Total Quantity
-
-Shows the total number of products sold.
-
-### 🏷️ Total Discount
-
-Measures the total discount amount provided.
-
-### 🧾 Total Orders
-
-Shows the number of orders processed.
-
-### 💵 Average Order Value
-
-```DAX
-Average Order Value =
-DIVIDE(
-    [Total Sales],
-    [Total Orders],
-    0
-)
-
+- 📈 **Sales Trends**: Identified seasonal patterns and growth opportunities
+- 🏆 **Top Performers**: Located top-selling products and high-revenue categories
+- 🏪 **Store Analytics**: Compared store performance for resource optimization
+- 💰 **Revenue Impact**: Quantified discount impact on net sales
+- 👥 **Customer Patterns**: Analyzed purchasing behavior by segment
 
 ---
 
-## PART 12 — 📈 Dashboard Visualizations
+## 🚀 Skills Demonstrated
 
-```markdown
-# 📈 Dashboard Visualizations
+### Data Engineering
 
-The Power BI report includes business-focused visualizations such as:
+✅ **ETL Pipeline Development**
+- End-to-end pipeline design and implementation
+- Data ingestion and orchestration
 
-### 📈 Sales Trend Over Time
+✅ **Medallion Architecture**
+- Bronze, Silver, Gold layer design patterns
+- Data modeling best practices
 
-Tracks how sales change across different dates.
+✅ **PySpark & Distributed Processing**
+- DataFrames and transformations
+- Distributed data cleaning at scale
 
-### 📊 Sales by Category
+✅ **Data Quality & Governance**
+- Data validation frameworks
+- Quality metrics and monitoring
 
-Identifies high-performing product categories.
+### Analytics & BI
 
-### 🏆 Top Products by Sales
+✅ **SQL & Data Warehousing**
+- Complex queries and aggregations
+- Warehouse schema design
 
-Highlights products generating the most revenue.
+✅ **Power BI & DAX**
+- Dashboard development
+- Advanced calculations and measures
 
-### 🏪 Sales by Store
+### Cloud & DevOps
 
-Compares sales performance across stores.
+✅ **Microsoft Fabric**
+- Lakehouse and Warehouse components
+- OneLake storage and management
 
-### 📌 KPI Cards
-
-Provides an executive summary of:
-
-```text
-Total Sales
-Total Quantity
-Total Discount
-Total Orders
-Average Order Value
-
-
-
----
-
-## PART 13 — 🔄 End-to-End Data Flow
-
-```markdown
-# 🔄 End-to-End Data Flow
-
-```text
-CSV Source Files
-       │
-       ▼
-Fabric Data Pipeline
-       │
-       ▼
-🥉 Bronze Lakehouse
-       │
-       │ Raw CSV
-       ▼
-PySpark / Dataflow Gen2
-       │
-       ├── Remove duplicates
-       ├── Trim whitespace
-       ├── Handle nulls
-       ├── Correct data types
-       └── Validate foreign keys
-       │
-       ▼
-🥈 Silver Lakehouse
-       │
-       │ Parquet
-       ▼
-Gold Transformation
-       │
-       ├── Gold_Sales
-       └── Gold_Category_Sales
-       │
-       ├──────────────────┐
-       ▼                  ▼
-Fabric Warehouse      Power BI
-                          │
-                          ▼
-                  Semantic Model
-                          │
-                          ▼
-                  Business Dashboard
-
+✅ **Version Control**
+- Git workflow and collaboration
+- Code repository management
 
 ---
 
-## PART 14 — 🛠️ Technologies Used
+## 📝 Documentation
 
-```markdown
-# 🛠️ Technologies Used
+Detailed documentation available in the `/documentation` folder:
 
-| Technology | Purpose |
-|---|---|
-| **Microsoft Fabric** | End-to-end data engineering platform |
-| **OneLake** | Unified data storage |
-| **Lakehouse** | Bronze and Silver data storage |
-| **PySpark** | Data transformation and ETL |
-| **Dataflow Gen2** | Low-code ETL |
-| **Data Pipeline** | Data ingestion and orchestration |
-| **Fabric Warehouse** | SQL analytical storage |
-| **T-SQL** | Warehouse querying |
-| **Power BI** | Visualization and reporting |
-| **DAX** | Analytical measures |
-| **Parquet** | Columnar data storage |
-| **GitHub** | Version control |
-| **Fabric Git Integration** | Source control for Fabric artifacts |
+- **Data Dictionary** - Column definitions and data types
+- **Pipeline Documentation** - ETL process and logic
+- **Transformation Rules** - Cleaning and validation rules
 
 ---
 
-# 🔐 Data Quality & Governance
+## 🤝 Contributing
 
-The pipeline implements several data quality practices:
+Contributions are welcome! Please follow these steps:
 
-- ✅ Duplicate detection and removal
-- ✅ Null validation
-- ✅ Data type validation
-- ✅ Referential integrity checks
-- ✅ Whitespace normalization
-- ✅ Invalid record removal
-- ✅ Layered data architecture
-- ✅ Parquet-based storage
-- ✅ Git-based version control
-
----
-# 📁 Project Structure
-
-```text
-supermarket-data-engineering-fabric/
-│
-├── DF_LH_TO_WH.Dataflow/
-│
-├── New_Warehouse.Warehouse/
-│
-├── PowerBi_Supermarket_Gold.Report/
-│
-├── PowerBi_Supermarket_Gold.SemanticModel/
-│
-├── SuperMarket_BrToSi_ETL.Notebook/
-│
-├── SupM_SilverTOGold.Notebook/
-│
-├── Supermarket_Raw_Data.Lakehouse/
-│
-├── Wh_ETL_SupermarketData.Warehouse/
-│
-├── copyonpremsqldatolakehouse.DataPipeline/
-│
-├── StagingLakehouseForDataflows/
-│
-├── StagingWarehouseForDataflows/
-│
-└── README.md
-
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/improvement`)
+3. Commit changes (`git commit -m 'Add improvement'`)
+4. Push to branch (`git push origin feature/improvement`)
+5. Open a Pull Request
 
 ---
 
-## PART 17 — 🚀 Key Learning Outcomes
+## 📄 License
 
-```markdown
-# 🚀 Key Learning Outcomes
-
-This project demonstrates practical experience with:
-
-- End-to-end ETL pipeline development
-- Microsoft Fabric Lakehouse architecture
-- Medallion Architecture
-- PySpark data engineering
-- Dataflow Gen2
-- Data Pipeline development
-- Data quality and validation
-- Parquet-based data storage
-- SQL Data Warehousing
-- Analytical data modeling
-- Power BI Semantic Modeling
-- DAX measures
-- Business intelligence reporting
-- Git-based version control
-- Microsoft Fabric Git Integration
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
-# 💡 Business Value
 
-The solution converts raw supermarket transactions into reliable analytical datasets that can support:
+## 👨‍💻 Author
 
-- 📈 Sales performance monitoring
-- 🛍️ Product performance analysis
-- 🏪 Store performance comparison
-- 📊 Category-level analysis
-- 🏷️ Discount analysis
-- 📅 Revenue trend analysis
-- 💰 Executive reporting
-- 🎯 Data-driven business decisions
+**K Sai Snehan**
+
+- 🔗 LinkedIn: [linkedin.com/in/k-saisnehan](https://linkedin.com/in/k-saisnehan)
+- 📧 Email: saisnehank@gmail.com
+- 💼 Focus Areas: Data Engineering | Microsoft Fabric | PySpark | SQL | Power BI | Azure
 
 ---
+
+## 🙏 Acknowledgments
+
+- Microsoft Fabric documentation and best practices
+- PySpark community resources
+- Power BI design patterns
+- Open-source data engineering tools and libraries
+
+---
+
+## 📞 Support
+
+For questions or issues, please:
+
+1. Check the documentation folder
+2. Review the pipeline logs
+3. Open an issue on GitHub
+4. Contact the author
+
+---
+
+**Last Updated**: August 2026
+
+Made with ❤️ using Microsoft Fabric
