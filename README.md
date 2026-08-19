@@ -14,7 +14,7 @@
 
 - [Overview](#overview)
 - [Business Problem](#business-problem)
-- [Solution Architecture](#solution-architecture)
+- [Solution Architecture](#solution-architecture) 
 - [Data Pipeline](#data-pipeline)
 - [Technology Stack](#technology-stack)
 - [Key Features](#key-features)
