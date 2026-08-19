@@ -61,7 +61,7 @@ Decision-makers need **reliable, clean data** to understand:
 
 ### Medallion Architecture (Bronze → Silver → Gold)
 
-```
+``` 
 ┌──────────────────────────────────────────────────────────────────┐
 │                         DATA SOURCES                             │
 │                    SQL Server / CSV Files                        │
