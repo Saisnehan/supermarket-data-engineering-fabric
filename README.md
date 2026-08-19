@@ -214,7 +214,7 @@ Metrics:
 - Data type enforcement
 
 ✅ **Scalable Architecture**
-- PySpark for distributed processing
+- PySpark for distributed processing 
 - Parquet compression for storage efficiency
 - Medallion architecture for maintainability
 
