@@ -169,7 +169,7 @@ Metrics:
 
 ### Visualizations
 
-- 📈 **Sales Trend** - Time-series sales performance
+- 📈 **Sales Trend** - Time-series sales performance 
 - 📊 **Sales by Category** - Category-wise breakdown
 - 🏆 **Top Products** - Best-selling products
 - 🏪 **Sales by Store** - Store-wise performance
