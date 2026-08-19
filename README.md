@@ -48,7 +48,7 @@ Supermarket businesses generate large volumes of **customer, order, product, and
 
 Decision-makers need **reliable, clean data** to understand:
 
-- 💰 Total sales and revenue trends
+- 💰 Total sales and revenue trends 
 - 🏆 Best-performing products and categories
 - 🏪 Store-wise sales performance
 - 📦 Product sales volume
