@@ -113,7 +113,7 @@ Source tables ingested as raw Parquet files:
 ### 🥈 Silver Layer: Data Cleaning & Transformation
 
 Implemented using **PySpark** and **Dataflow Gen2**:
-
+ 
 | Activity | Purpose |
 |----------|---------|
 | **Deduplication** | Remove duplicate records |
