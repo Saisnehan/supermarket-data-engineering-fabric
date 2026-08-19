@@ -225,7 +225,7 @@ Metrics:
 
 ✅ **Version Control**
 - GitHub integration for code tracking
-- Collaborative development practices
+- Collaborative development practices 
 
 ---
 
