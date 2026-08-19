@@ -183,7 +183,7 @@ Metrics:
 
 - **Microsoft Fabric** - Cloud-native data platform
 - **Lakehouse** - Unified data storage (OneLake)
-- **PySpark** - Distributed data processing
+- **PySpark** - Distributed data processing 
 - **Dataflow Gen2** - Low-code ETL orchestration
 - **Fabric Warehouse** - SQL analytics engine
 
