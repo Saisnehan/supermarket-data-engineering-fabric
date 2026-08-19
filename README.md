@@ -44,7 +44,7 @@ Supermarket businesses generate large volumes of **customer, order, product, and
 - ❌ Invalid relationships and foreign key violations
 - ❌ Unstructured transactional information
 
-### Challenge
+### Challenge 
 
 Decision-makers need **reliable, clean data** to understand:
 
