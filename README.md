@@ -12,7 +12,7 @@
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
+- [Overview](#overview) 
 - [Business Problem](#business-problem)
 - [Solution Architecture](#solution-architecture) 
 - [Data Pipeline](#data-pipeline)
