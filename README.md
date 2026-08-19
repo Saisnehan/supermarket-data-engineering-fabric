@@ -420,7 +420,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🙏 Acknowledgments
 
 - Microsoft Fabric documentation and best practices
-- PySpark community resources
+- PySpark community resources 
 - Power BI design patterns
 - Open-source data engineering tools and libraries
 
