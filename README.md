@@ -106,7 +106,7 @@ Source tables ingested as raw Parquet files:
 
 - **Customers** - Customer demographics and information
 - **Orders** - Order transactions with timestamps
-- **OrderDetails** - Line-level order information
+- **OrderDetails** - Line-level order information 
 - **Products** - Product catalog and pricing
 - **Stores** - Store locations and details
 
