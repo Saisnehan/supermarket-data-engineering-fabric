@@ -53,7 +53,7 @@ Decision-makers need **reliable, clean data** to understand:
 - 🏪 Store-wise sales performance
 - 📦 Product sales volume
 - 🏷️ Discount impact on revenue
-- 🧾 Order performance and Average Order Value (AOV)
+- 🧾 Order performance and Average Order Value (AOV) 
 
 ---
 
