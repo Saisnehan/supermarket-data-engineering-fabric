@@ -37,7 +37,7 @@ The solution enables data-driven decision-making by providing clean, validated, 
 ## 💼 Business Problem
 
 Supermarket businesses generate large volumes of **customer, order, product, and store transaction data**, but raw data often suffers from:
-
+ 
 - ❌ Duplicates and inconsistencies
 - ❌ Missing and null values
 - ❌ Incorrect data types and formats
