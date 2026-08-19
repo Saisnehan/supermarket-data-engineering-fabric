@@ -163,7 +163,7 @@ Metrics:
 |--------|-------------|
 | 💰 **Total Sales** | Gross revenue across all transactions |
 | 📦 **Total Quantity** | Units sold |
-| 🧾 **Total Orders** | Number of transactions |
+| 🧾 **Total Orders** | Number of transactions | 
 | 🏷️ **Total Discount** | Discount amount granted | 
 | 💵 **Average Order Value** | Revenue per order |  
 
