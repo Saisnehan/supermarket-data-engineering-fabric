@@ -372,7 +372,7 @@ supermarket-data-engineering/
 ✅ **Microsoft Fabric**
 - Lakehouse and Warehouse components
 - OneLake storage and management
-
+ 
 ✅ **Version Control**
 - Git workflow and collaboration
 - Code repository management
