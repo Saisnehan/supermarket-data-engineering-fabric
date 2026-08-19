@@ -30,7 +30,7 @@
 
 This project demonstrates a complete **end-to-end data engineering pipeline** built on **Microsoft Fabric**. It transforms raw supermarket transaction data into trusted, business-ready analytical datasets using the **Medallion Architecture** (Bronze → Silver → Gold layers).
 
-The solution enables data-driven decision-making by providing clean, validated, and aggregated data for executive dashboards and business intelligence tools.
+The solution enables data-driven decision-making by providing clean, validated, and aggregated data for executive dashboards and business intelligence tools. 
 
 ---
 
