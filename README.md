@@ -118,7 +118,7 @@ Implemented using **PySpark** and **Dataflow Gen2**:
 |----------|---------|
 | **Deduplication** | Remove duplicate records |
 | **Null Handling** | Address missing values appropriately |
-| **Trimming & Formatting** | Clean whitespace and standardize text |
+| **Trimming & Formatting** | Clean whitespace and standardize text | 
 | **Type Correction** | Ensure correct data types (int, float, date) |
 | **Foreign Key Validation** | Validate referential integrity |
 | **Invalid Record Removal** | Drop records that fail validation |
