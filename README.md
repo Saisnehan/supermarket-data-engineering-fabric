@@ -196,7 +196,7 @@ Metrics:
 
 ### DevOps & Version Control
 
-- **GitHub** - Code repository & collaboration
+- **GitHub** - Code repository & collaboration 
 - **Git** - Version control
 
 ---
