@@ -248,7 +248,7 @@ supermarket-data-engineering/
 │   ├── etl_scripts/
 │   │   ├── 01_customer_cleaning.py
 │   │   ├── 02_order_cleaning.py
-│   │   ├── 03_product_cleaning.py
+│   │   ├── 03_product_cleaning.py 
 │   │   ├── 04_store_cleaning.py
 │   │   └── 05_orderdetails_cleaning.py
 │   └── Cleaned_Data/
