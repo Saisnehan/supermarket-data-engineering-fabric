@@ -101,7 +101,7 @@ Decision-makers need **reliable, clean data** to understand:
 ## 📊 Data Pipeline
 
 ### 🥉 Bronze Layer: Raw Data Ingestion
-
+              
 Source tables ingested as raw Parquet files:
 
 - **Customers** - Customer demographics and information
@@ -142,11 +142,11 @@ Columns:
 #### Gold_Category_Sales Table
 
 Aggregated category-level metrics:
-
+  
 ```
 Metrics:
 - GrossSales (Sum of all sales before discount)
-- NetSales (Sales after discount)
+- NetSales (Sales after discount)  
 - TotalDiscount (Total discount amount)
 - TotalQuantity (Units sold)
 - NumberOfOrders (Order count)
