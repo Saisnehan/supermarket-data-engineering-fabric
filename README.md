@@ -121,7 +121,7 @@ Implemented using **PySpark** and **Dataflow Gen2**:
 | **Trimming & Formatting** | Clean whitespace and standardize text | 
 | **Type Correction** | Ensure correct data types (int, float, date) |
 | **Foreign Key Validation** | Validate referential integrity |
-| **Invalid Record Removal** | Drop records that fail validation |
+| **Invalid Record Removal** | Drop records that fail validation |   
 
 **Output**: Cleaned datasets stored as Parquet in Silver layer
 
