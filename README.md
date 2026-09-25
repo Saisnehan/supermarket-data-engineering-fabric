@@ -167,7 +167,7 @@ Metrics:
 | 🏷️ **Total Discount** | Discount amount granted | 
 | 💵 **Average Order Value** | Revenue per order |  
 
-### Visualizations
+### Visualizations   
 
 - 📈 **Sales Trend** - Time-series sales performance 
 - 📊 **Sales by Category** - Category-wise breakdown
