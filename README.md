@@ -178,7 +178,7 @@ Metrics:
 ---
 
 ## 🛠️ Technology Stack
-
+    
 ### Data Platform & Processing
 
 - **Microsoft Fabric** - Cloud-native data platform
