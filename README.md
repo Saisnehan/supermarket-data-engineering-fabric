@@ -41,7 +41,7 @@ Supermarket businesses generate large volumes of **customer, order, product, and
 - ❌ Duplicates and inconsistencies
 - ❌ Missing and null values
 - ❌ Incorrect data types and formats
-- ❌ Invalid relationships and foreign key violations
+- ❌ Invalid relationships and foreign key violations    
 - ❌ Unstructured transactional information
 
 ### Challenge 
