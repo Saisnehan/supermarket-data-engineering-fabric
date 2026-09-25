@@ -75,7 +75,7 @@ Decision-makers need **reliable, clean data** to understand:
                   └──────────┬───────────┘
                              │
                              ▼
-                  ┌──────────────────────┐
+                  ┌──────────────────────┐  
                   │  🥈 SILVER LAYER     │
                   │  Data Cleaning &     │
                   │  Transformation      │
