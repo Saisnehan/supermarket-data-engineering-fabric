@@ -240,7 +240,7 @@ supermarket-data-engineering/
 ├── bronze/
 │   ├── Customers.parquet
 │   ├── Orders.parquet
-│   ├── OrderDetails.parquet
+│   ├── OrderDetails.parquet    
 │   ├── Products.parquet
 │   └── Stores.parquet
 │
