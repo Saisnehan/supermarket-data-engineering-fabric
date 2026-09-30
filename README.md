@@ -275,7 +275,7 @@ supermarket-data-engineering/
 - Microsoft Fabric workspace access
 - Power BI license (for dashboard viewing)
 - PySpark environment or Fabric Notebook
-- SQL knowledge (optional, for warehouse queries)
+- SQL knowledge (optional, for warehouse queries)    
 
 ### Setup Instructions
 
