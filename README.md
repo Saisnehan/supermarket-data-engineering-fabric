@@ -299,7 +299,7 @@ supermarket-data-engineering/
    2. Monitor job execution and logs
    3. Validate output in Silver layer
    ```
-
+   
 4. **Create Gold Layer Tables**
    ```
    1. Transform Silver data using SQL
