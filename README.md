@@ -159,7 +159,7 @@ Metrics:
 
 ### Key Metrics Visualized
 
-| Metric | Description |
+| Metric | Description |   
 |--------|-------------|
 | 💰 **Total Sales** | Gross revenue across all transactions |
 | 📦 **Total Quantity** | Units sold |
