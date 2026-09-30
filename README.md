@@ -6,7 +6,7 @@
 ![PySpark](https://img.shields.io/badge/PySpark-ETL-orange)
 ![SQL](https://img.shields.io/badge/SQL-Warehouse-lightgrey)
 ![Power BI](https://img.shields.io/badge/Power%20BI-Analytics-yellow) 
-![Parquet](https://img.shields.io/badge/Parquet-Data%20Format-lightblue)
+![Parquet](https://img.shields.io/badge/Parquet-Data%20Format-lightblue)    
 
 ---
 
